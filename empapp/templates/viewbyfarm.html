@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'milkcollectorhome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           Milk Collection Data</h1></div><br><br>
+<div style="margin-top:20px;margin-left:100px;">
+    <h6>Farmer Name : {{ fr }}</h6><br>
+    <h6>Date From : {{sd}}</h6><br>
+    <h6>Date To : {{ed}}</h6>
+
+</div>
+<table width="80%" style="margin-left:100px;margin-top:30px;border:1px solid black;margin-bottom:100px;">
+    <tr style="border:1px solid black;">
+        <td><h5 style="color:brown;">Date</h5></td>
+
+        <td><h5 style="color:brown;">Farmer</h5></td>
+
+        <td><h5 style="color:brown;">Milk</h5></td>
+        <td><h5 style="color:brown;">FAT</h5></td>
+        <td><h5 style="color:brown;">SNF</h5></td>
+        <td><h5 style="color:brown;">Rate</h5></td>
+        <td><h5 style="color:brown;">Totalrate</h5></td>
+
+    </tr>
+
+{% for i in data %}
+    <tr style="border:1px solid black;">
+        <td><h6>{{i.Date}}</h6></td>
+
+        <td><h6>{{i.Farmer}}</h6></td>
+        <td><h6>{{i.Milk}}</h6></td>
+        <td><h6>{{i.FAT}}</h6></td>
+        <td><h6>{{i.SNF}}</h6></td>
+        <td><h6>{{i.Rate}}</h6></td>
+        <td><h6>{{i.Totalrate}}</h6></td>
+
+
+    </tr>
+{% endfor %}
+</table>
+<div style="margin-left:200px;width:330px;height:65px;padding:20px;">
+
+<a href="{% url 'milkview' %}"> <button type="button" style="background-color:blue;margin-bottom:100px;color:white;width:100px;height:50px;margin-left:430px;">BACK</button></a>
+</div>
+</body>
+<style>
+td{
+    height:60px;
+    width:200px;
+    text-align:center;
+
+}
+
+</style>
+</html>
+{% endblock %}

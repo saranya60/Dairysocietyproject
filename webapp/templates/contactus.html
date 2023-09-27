@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% extends 'webhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section id="center" class="center_o clearfix">
+ <div class="container">
+   <div class="row">
+    <div class="col-sm-12">
+	 <div class="center_o1 text-center">
+	   <h1 class="mgt">Contact Us</h1>
+	   <h4><a href="#">Home</a> / Contact Us</h4>
+	 </div>
+	</div>
+   </div>
+  </div>
+</section>
+
+<section id="contact" class="clearfix">
+	<form method="post" action="{% url 'sendmsg' %}">
+		{% csrf_token %}
+
+ <div class="container">
+  <div class="row">
+    <div class="contact_1  clearfix">
+	 <div class="col-sm-8">
+	  <div class="contact_1lm clearfix">
+	  <div class="contact_1l clearfix">
+	   <h4 class="col_1 mgt">Get in touch</h4>
+	   <h3>Write Us A Message</h3>
+	  </div><br>
+	  <div class="checkout_1l1 clearfix">
+       <div class="col-sm-6 space_left">
+	    <h5>Your Name </h5>
+		<input class="form-control" required name="name" type="text">
+	   </div>
+	   <div class="col-sm-6 space_left">
+	    <h5>Your Subjects <span class="col_3"></span></h5>
+		<input class="form-control" type="text" name="subject">
+	   </div>
+	  </div>
+	  <div class="checkout_1l1 clearfix">
+       <div class="col-sm-6 space_left">
+	    <h5>Your Email</h5>
+		<input class="form-control" type="text" required name="email">
+	   </div>
+	   <div class="col-sm-6 space_left">
+	    <h5>Your Phone </h5>
+		<input class="form-control" type="text" required name="mobile">
+	   </div>
+	  </div>
+	  <div class="checkout_1l1 clearfix">
+	   <div class="col-sm-12 space_left">
+	    <h5>Your Message </h5>
+		<textarea class="form-control form_1" required name="message"></textarea>
+		   <h6><button class="button" type="submit">SEND MESSAGE</button></h6>
+	   </div>
+	  </div>
+	 </div>
+	 </div>
+	 <div class="col-sm-4">
+	  <div class="contact_1rm clearfix">
+	    <div class="contact_1r1 mgt clearfix">
+		 <span><i class="fa fa-phone"></i></span>
+		 <h4>Call us Now:</h4>
+		 <p>0496 2512528</p>
+		 <p class="mgt">9947283139</p>
+		</div>
+		<div class="contact_1r1 clearfix">
+		 <span><i class="fa fa-phone"></i></span>
+		 <h4>Email:</h4>
+		 <p><a href="#">malabarmilk@gmail.com</a></p>
+
+		</div>
+		<div class="contact_1r1 clearfix">
+		 <span><i class="fa fa-phone"></i></span>
+		 <h4>Our Address:</h4>
+		 <p>Co-operative Milk Supply Society Vellikulangara, Orkkattery(po), 673501(pin)</p>
+		</div>
+	  </div>
+	 </div>
+	</div>
+
+  </div>
+ </div>
+	</form>
+</section>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+</html>
+{% endblock %}

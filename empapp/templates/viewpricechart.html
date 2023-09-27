@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% extends 'milkcollectorhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;margin-top:50px;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+            PRICE CHART</h1></div><br><br>
+
+<table width="80%" style="margin-left:100px;margin-top:30px;border:1px solid black;margin-bottom:100px;">
+    <tr style="border:1px solid black;text-align:center;">
+
+        <td><h5 style="color:brown;">FAT</h5></td>
+        <td><h5 style="color:brown;">SNF</h5></td>
+        <td><h5 style="color:brown;">Rate</h5></td>
+
+    </tr>
+
+{% for i in data %}
+    <tr style="border:1px solid black;text-align:center;">
+
+        <td><h6>{{i.fat}}</h6></td>
+        <td><h6>{{i.snf}}</h6></td>
+        <td><h6>{{i.rate}}</h6></td>
+        <td>  <a href="{% url 'pcdlt' dataid=i.id %}" style="margin-left:20px;"><img src="{% static 'src/images/dltpurple.png' %}" width="25px" height="25px"></a>
+
+
+    </tr>
+{% endfor %}
+</table>
+
+</body>
+<style>
+input{
+  width:550px;
+  height:50px;
+  border:2px solid black;
+  padding:10px;
+  font-size:16pt;
+  margin-top:25px;
+}
+.sel{
+
+  width:550px;
+  height:50px;
+  border:2px solid black;
+  padding:10px;
+  font-size:16pt;
+}
+
+.inpbutton {
+  padding: 12px 10px;
+  width:300px;
+  height: 60px;
+  margin-top:50px;
+  border: 2px solid black;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 150px;
+  background-color:purple;
+
+}
+td{
+    height:50px;
+}
+
+</style>
+</html>
+{% endblock %}

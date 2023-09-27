@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" style="border:2px solid black;border-radius:30px; background-color:rgb(247, 233, 247);">
+    <div class="card-body" >
+        <div style="background-image:linear-gradient(white 50%,purple);height:100px;border:2px solid black;
+        border-radius:30px;width:100%;">
+            <h1>
+            Edit Employee Details</h1></div>
+        <form class="form-inline" method="post" action="{% url 'empupdate' dataid=emp.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table style="">
+                <tr><td>Employee Name : </td>
+                    <td><input name="empname" type="text" value="{{emp.Empname}}" class="form-field" placeholder="Employee Name"></td></tr>
+            <tr><td>Designation : </td>
+                <td><select class="form-field" name="desg">
+
+    <option>{{emp.Designation}}</option>
+        {% for i in des %}
+    <option>{{i.Designation}}</option>
+      {% endfor %}
+                </select></td></tr>
+            <tr><td>Address : </td>
+                <td><textarea placeholder="Address" name="adrs" class="form-field" style="height:150px;">{{emp.Address}}</textarea></td></tr>
+            <tr><td>Date Of Birth :</td>
+              <td>
+                  <input class="form-field" name="dob" type="text" value=" {{ emp.Dateofbirth }} ">
+
+                </td></tr>
+                <tr><td>Gender :  </td>
+                    <td><div class="form-field">
+                <input type="radio" value="Male" name="gender" id="male"
+                {% if emp.Gender == 'Male' %} checked {% endif %}>Male
+                <input type="radio" value="Female" name="gender" id="Female"
+                {% if emp.Gender == 'Female' %} checked {% endif %}>Female
+                <input type="radio" value="Others" name="gender" id="Others"
+                {% if emp.Gender == 'Others' %} checked {% endif %}>Others
+                    </div> </td></tr>
+           <tr><td>Mobile : </td>
+               <td><input name="mobile" value="{{emp.Mobile}}" type="tel" pattern="[0-9]{10}" class="form-field" placeholder="Mobile Number"></td></tr>
+            <tr><td>Email : </td>
+                <td><input name="email" type="email" value="{{emp.Email}}" class="form-field" placeholder="Email ID "></td></tr>
+            <tr><td>Salary :</td>
+                <td><input name="salary" type="text" class="form-field"  placeholder="Salary" value="{{emp.Salary}}"></td></tr>
+           <tr><td>Image : </td>
+               <td colspan="2"><img src="{{emp.Image.url}}" width="150px" height="150px">
+                  <input class="inp1" name="simage" type="file"></td></tr>
+                <tr><td colspan="2"> <button style="margin-top:50px;  background-color: purple;height:50px;" type="submit" class="inpbutton">UPDATE</button></td></tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script>
+        $(document).ready(function(){
+           $("#img1").click(function(){
+                $("#date1").fadeToggle(2000)
+                })
+            })
+
+    </script>
+
+</body>
+
+<style>
+.form-field{
+    width:500px;
+    margin-bottom:12px;
+    margin-top:12px;
+    height:50px;
+    border:2px solid black;
+    border-radius:10px;
+    margin-left:60px;
+    background-color:white;
+    padding:10px;
+    font-size:16pt;
+    font-family: Arial;
+    font-weight:500;
+
+
+}
+h1{
+    color:rgb(28, 4, 92);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding-top:10px;
+    text-align:center;
+    border-radius:30px;
+
+}
+table{
+    margin-left:100px;
+    margin-top:40px;
+
+
+}
+.inp1{
+    margin-top:80px;
+    color:black;
+    font-size:16pt;
+    font-family: Arial;
+    font-weight:500;
+
+}
+.span1{
+    font-size:16pt;
+    font-family: Arial;
+    font-weight:500;
+    color:black;
+}
+td{
+    color:black;
+    font-size:16pt;
+    font-family: Arial;
+    font-weight:500;
+    margin-top:25px;
+
+}
+.inpbutton {
+  padding: 12px 10px;
+  width:300px;
+  height: 60px;
+  border: 0;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 200px;
+
+}
+.dob{
+    width:180px;
+    margin-left:10px;
+    border:none;
+    padding:auto;
+}
+
+</style>
+</html>
+{% endblock %}

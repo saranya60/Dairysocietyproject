@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+{% extends 'webhome.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'addtocart' %}">
+    {% csrf_token %}
+    <div style="margin-top:200px;">
+        <img src="{{products.Image.url}}" width="300px" height="300px" alt="" style="margin-left:200px;">
+    </div>
+<div style="margin-top:-300px;margin-left:600px;width:400px;height:auto;">
+    <h2 style="font-family:Times New Roman;color:#000066;">{{products.Product}}</h2>
+    <input type="hidden" name="product" value="{{products.Product}}">
+    <div class="product__details__price"><h4 style="font-family:Times New Roman;color:brown;">Rs.{{products.Price}}</h4></div>
+    <h5 style="margin-top:10px;font-family:Times New Roman;margin-left:20px;color:black;">{{products.Description}}</h5>
+    <div class="product__details__quantity" style="margin-top:20px;">
+        <input style="width:150px;height:40px;" type="number" name="quantity" id="qty" placeholder="0" min="1" max="10"><br>
+        <input type="hidden" name="price" value="{{products.Price}}" id="price"><br>
+        <label>Total Price : </label>
+        <input type="text" style="width:150px;height:40px;" name="total" placeholder="Total Price" id="total">
+        <input type="hidden" name="username" value="{{request.session.Username}}"><br>
+        <input type="hidden" name="desc" value="{{products.Description}}"><br>
+    </div><br><br>
+    <button type="submit" style="margin-bottom:70px;width:300px;height:60px;background-color:green;color:black;font-weight:bold;font-size:14pt;">
+        ADD TO CART</button>
+</div>
+</form>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#qty").change(function(){
+                x = document.getElementById("qty").value;
+                y = document.getElementById("price").value;
+                result = x*y;
+                document.getElementById("total").value = result;
+            })
+        })
+    </script>
+
+</body>
+</html>
+{% endblock %}

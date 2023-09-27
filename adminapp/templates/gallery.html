@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'AdminHome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="color:#000066;height:80px;padding-top:10px;text-align:center;margin-top:60px;">GALLERY</h1><br>
+
+
+                <div class="row" style="margin-top:10px;margin-left:50px;margin-bottom:150px;">
+                        {% for i in gal %}
+                        <div id="imgdiv" class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom:20px;margin-top:5px;margin-left:60px;">
+
+
+                                   <div class="div1" style="margin-top:20px;width:250px;height:250px;background-color:white;border:2px solid black;border-radius:20px;"> <a href="">
+                                       <img src="{{i.Image.url}}" style="width:235px;height:235px;padding-left:10px;padding-top:10px;"></a>
+                                <a href="{% url 'dltimg' dataid=i.id %}"><img src="{% static 'src/images/dltpurple.png' %}" width="25px" height="25px">
+                                </a>
+                                   </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".row").mouseenter(function(){
+                $(this).css("background-color","pink")
+            })
+            $(".row").mouseleave(function(){
+                $(this).css("background-color","#fff")
+            })
+            $(".div1").mouseenter(function(){
+                $(this).css("background-color","orange")
+            })
+            $(".div1").mouseleave(function(){
+                $(this).css("background-color","#fff")
+            })
+        })
+    </script>
+</body>
+</html>
+{% endblock %}

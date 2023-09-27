@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% extends 'saleshome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div>
+    <h1>VIEW BILL</h1>
+
+</div>
+    <form method="post" action="{% url 'billview' %}">
+        {% csrf_token %}
+        <table width="50%">
+        <tr>
+            <td>Date </td>
+            <td>:</td>
+                <td><input class="inp" type="date" required name="date1"></td></tr>
+
+            <tr><td>Customer </td>
+            <td>:</td>
+
+
+
+                    <td><select name="customer" class="inp" required>
+            <option value="">Select Customer</option>
+            {% for i in cs %}
+            <option value="{{i.Customer}}">{{i.Customer}}</option>
+            {% endfor %}
+                    </select></td></tr>
+        </table>
+            <button type="submit">VIEW BILL</button>
+
+    </form>
+
+<a href="{% url 'sales' %}"> <button type="button">ADD PRODUCT</button></a>
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+                x = document.getElementById("qty").value;
+                y = document.getElementById("price").value;
+                result = x*y;
+                document.getElementById("total").value = result;
+
+        })
+    </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+.divform{
+    margin-left:100px;
+}
+h1{
+    margin-left:300px;
+    margin-top:80px;
+    font-size:28pt;
+    font-weight:bold;
+    color:#000066;
+}
+.inp{
+    width:350px;
+    height:50px;
+    padding:10px;
+    color:black;
+    border:2px solid black;
+    border-radius:10px;
+    font-size:14pt;
+    margin-left:50px;
+}
+button{
+    width:250px;
+    height:50px;
+    border-radius:10px;
+    background-color:#000066;
+    color:white;
+    margin-left:250px;
+    margin-top:40px;
+}
+td{
+
+    text-align:center;
+    height:70px;
+    color:black;
+    font-size:12pt;
+    font-weight:bold;
+
+}
+
+table{
+    margin-top:50px;
+    margin-left:100px;
+}
+
+</style>
+
+</html>
+{% endblock %}

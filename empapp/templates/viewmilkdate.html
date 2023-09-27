@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'milkcollectorhome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="text-align:center;margin-top:50px;color:#000066;">VIEW MILK COLLECTION DATA</h2><br><br><br>
+<h4 style="margin-left:100px;">Date: {{ dt }}</h4>
+<table width="80%" style="margin-left:100px;">
+    <tr>
+        <td class="th">Farmer</td>
+        <td class="th">Milk</td>
+        <td class="th">FAT</td>
+        <td class="th">SNF</td>
+        <td class="th">Rate</td>
+        <td class="th">Total</td>
+
+    </tr>
+    {% for i in data %}
+    <tr style="margin-top:20px;">
+        <td>{{i.Farmer}}</td>
+        <td>{{i.Milk}}</td>
+        <td>{{i.FAT}}</td>
+        <td>{{i.SNF}}</td>
+        <td>{{i.Rate}}</td>
+        <td>{{i.Totalrate}}</td>
+
+
+
+
+    </tr>
+    {% endfor %}
+
+
+</table>
+
+</body>
+<style>
+td{
+    color:black;
+    font-weight:bold;
+    font-size:12pt;
+    height: 60px;
+    text-align:center;
+    }
+.th{
+    color:brown;
+    font-size:16pt;
+}
+tr{
+    border:1px solid black;
+}
+</style>
+</html>
+{% endblock %}

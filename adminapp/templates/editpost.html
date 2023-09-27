@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" style="border:2px solid black;  background-color:rgb(247, 233, 247);">
+    <div class="card-body" >
+        <div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           Edit Designation</h1></div><br><br>
+        <form style="margin-left:120px;" class="form-inline" method="post" action="{% url 'postupdate' dataid=des.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input name="desg" value="{{des.Designation}}" type="text" class="form-field" ><br>
+
+
+            <button style="margin-top:50px;  background-color: purple;height:50px;" type="submit" class="inpbutton">Update</button>
+        </form>
+    </div>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+.form-field {
+    color:black;
+    border-radius:10px;
+    background-color:white
+    ;
+    height: 50px;
+    width: 600px;
+    margin-left:50px;
+    padding: 0 16px;
+    border: 2px solid #000000;
+    font-size: 20px;
+    font-family: "Rubik", sans-serif;
+    outline: 0;
+    transition: 0.2s;
+    margin-top: 20px;
+}
+
+.form-field:focus {
+  border-color: #0f7ef1;
+}
+
+.inpbutton {
+  padding: 12px 10px;
+  width:300px;
+  height: 100px;
+  border: 0;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 200px;
+
+}
+
+</style>
+</html>
+{% endblock %}

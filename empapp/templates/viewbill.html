@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+
+<div>
+    <h1>BILL DETAILS</h1>
+
+</div>
+<div class="divform">
+
+    <div style="margin-top:50px;margin-left:20px;">
+        <h3 style="color:black;">Date :<input style="color:brown;margin-left:10px;font-weight:bold;font-size:14pt;" type="text" value="{{ dt }}" name="date1"> </h3>
+
+        <h3 style="color:black;margin-top:20px;">Customer Name : <input style="color:brown;margin-left:10px;font-weight:bold;font-size:14pt;" type="text" value="{{cs}}" name="customer"> </h3>
+
+
+    </div>
+
+
+        <table width="90%" style="border:1px solid black;">
+
+
+        <tr>
+            <td style="color:black;font-size:14pt;font-weight:bold;">Product</td>
+            <td style="color:black;font-size:14pt;font-weight:bold;">Quantity</td>
+            <td style="color:black;font-size:14pt;font-weight:bold;">Price</td>
+            <td style="color:black;font-size:14pt;font-weight:bold;">Total </td>
+        </tr>
+               {% for i in data %}
+               <tr>
+                   <td>{{i.Product}}</td>
+                   <td>{{i.Quantity}}</td>
+                   <td>{{i.Price}}</td>
+                   <td>{{i.Total}}</td>
+               </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="font-size:14pt;color:red;">GRAND TOTAL</td>
+            <td style="font-size:14pt;color:red;">Rs. <input style="font-size:16pt;color:red;font-weight:bold;" type="text" value="{{totalprice}}" name="totalprice"> </td>
+
+            </tr>
+
+        </table>
+
+
+
+
+    <a href="{% url 'salebill' %}"> <button class="btn1" style="width:150px;margin-top:100px;border-radius:0px;" type="button">BACK</button></a>
+
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+     <script>
+        function myfunction(){
+            window.print();
+        }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+
+                x = document.getElementById("qty").value;
+                y = document.getElementById("price").value;
+                result = x*y;
+                document.getElementById("total").value = result;
+
+        })
+    </script>
+
+</body>
+<style>
+.divform{
+    margin-left:150px;
+}
+input{
+    border:none;
+}
+td{
+
+    text-align:center;
+    height:70px;
+    color:black;
+    font-size:14pt;
+    font-weight:bold;
+
+}
+tr{
+    border:1px solid black;
+
+}
+table{
+    margin-top:50px;
+}
+h1{
+    margin-left:480px;
+    margin-top:20px;
+    font-size:28pt;
+    font-weight:bold;
+    color:#000066;
+}
+.btn1{
+    width:200px;
+    height:50px;
+    border-radius:10px;
+    background-color:#000066;
+    color:white;
+    margin-left:450px;
+    margin-top:50px;
+    margin-bottom:50px;
+}
+</style>
+
+</html>

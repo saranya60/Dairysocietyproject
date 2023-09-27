@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'login/style.css' %}">
+
+</head>
+<body>
+<div style="height:800px;background-image:url({% static 'img/desktop.jpg' %});">
+
+</div>
+<!-- partial:index.partial.html -->
+<form style="border:3px solid red;" class="login" method="post" action="{% url 'employeelogin' %}">
+  {% csrf_token %}
+  <input type="text" placeholder="Username" name="username">
+  <input type="password" pattern="[0-9]{10}" placeholder="Password" name="password">
+  <button type="submit">Login</button>
+</form>
+
+<a href="https://codepen.io/davinci/" target="_blank">check my other pens</a>
+<!-- partial -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'saleshome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;MARGIN-TOP:40PX;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           INCOME FOR DATE RANGE</h1></div><br><br>
+<div style="margin-top:20px;margin-left:100px;">
+
+    <h4>Date From : {{sd}}</h4><br>
+    <h4>Date To : {{ed}}</h4>
+
+</div>
+<table width="80%" style="margin-left:100px;margin-top:30px;border:1px solid black;margin-bottom:100px;">
+    <tr style="border:1px solid black;">
+        <td><h4>Date</h4></td>
+        <td><h4>Total</h4></td>
+
+    </tr>
+
+{% for i in data %}
+    <tr style="border:1px solid black;">
+        <td><h4 style="color:brown;">{{i.Date}}</h4></td>
+        <td><h4 style="color:brown;">{{i.Total}}</h4></td>
+
+
+    </tr>
+{% endfor %}
+</table>
+<div style="border:2px solid blue;text-align:center;margin-top:80px;height:80px;">
+    <h3 style="color:red;padding-top:20px;">TOTAL INCOME : RS. {{total}} </h3>
+</div>
+
+
+</body>
+<style>
+td{
+    height:60px;
+    width:200px;
+    text-align:center;
+
+}
+
+</style>
+</html>
+{% endblock %}

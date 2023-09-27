@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           Employee Attendance</h1></div><br><br>
+<div style="width:600px;margin-left:150px;margin-bottom:100px;">
+<form method="post" action="{% url 'saveatn' %}">
+    {% csrf_token %}
+
+    <input type="date" name="date1" class="form-field" required>
+    <select name="name" class="form-field" required>
+        <option value="">
+            Select Employee Name
+        </option>
+         {% for i in data %}
+        <option value="{{i.Empname}}">{{i.Empname}}</option>
+        {% endfor %}
+    </select><br><br>
+    <div class="gen">
+        <input class="rad" style="margin-left:120px;margin-top:20px;" type="radio" value="Present" name="atn" required><span class="sp">Present</span>
+        <input class="rad" style="margin-left:30px;" type="radio" value="Absent" name="atn" required><span class="sp">Absent</span>
+    </div>
+<button style="margin-top:50px;  background-color: purple;height:50px;" type="submit" class="inpbutton">Submit</button>
+
+</form>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+.form-field{
+    width:500px;
+    margin-bottom:12px;
+    margin-top:12px;
+    height:50px;
+    border:2px solid black;
+    border-radius:10px;
+    margin-left:-150px;
+    background-color:white;
+    padding:10px;
+    font-size:16pt;
+    font-family: Arial;
+    font-weight:500;
+    margin-left:100px;
+
+
+}
+.gen{
+    width:500px;
+    height:70px;
+    border-radius:10px;
+    margin-left:100px;
+    background-color:green;
+}
+.sp{
+    font-size:16pt;
+    font-weight:bold;
+    font-family: Arial;
+    color:white;
+    padding-left:10px;
+
+
+
+}
+.rad{
+    width:25px;
+    height:25px;
+    margin-top:10px;
+
+}
+.inpbutton {
+  padding: 12px 10px;
+  width:300px;
+  height: 60px;
+  border: 0;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 200px;
+
+}
+</style>
+</html>
+{% endblock %}

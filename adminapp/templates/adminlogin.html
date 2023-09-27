@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>admin login</title>
+  <link rel="stylesheet" href="{% static 'adminlogin/style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Slide Navbar</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'adminlogin/style.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="main">
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form method="post" action="{% url 'admin_login' %}">
+					{% csrf_token %}
+					<label for="chk" aria-hidden="true" style="font-size:20pt;">ADMIN LOGIN</label>
+					<input type="text" name="username" placeholder="Username" required="">
+
+					<input type="password" name="password" placeholder="Password" required="">
+					<button type="submit">LOGIN</button>
+				</form>
+			</div>
+
+			<div class="login">
+
+					<label for="chk" aria-hidden="true" style="font-size:20pt;padding-top:10px;">Employee Login</label>
+					<h3 style="text-align:center;">Milk Collector</h3>
+					<h3 style="text-align:center;"> Or</h3>
+					<h3 style="text-align:center;">Sales Manager ?</h3>
+				<a href="{% url 'emploginpage' %}"><button>Click Here..</button></a>
+
+			</div>
+	</div>
+</body>
+</html>
+<!-- partial -->
+
+</body>
+<style>
+input{
+	font-size:16pt;
+	padding-left:10px;
+	font-famiy:Times New Roman;
+	color:#000066;
+}
+</style>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login or register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css'>
+
+      <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+
+
+</head>
+
+<body style="background-color:white;">
+  <!--
+Follow me on
+------------
+Codepen: http://codepen.io/mycnlz/
+Dribbble: https://dribbble.com/mycnlz
+Pinterest: https://pinterest.com/mycnlz/
+-->
+<div style="height:800px;background-image:url({% static 'images/desktop.jpg' %});">
+
+</div>
+<div class='box'>
+  <div class='box-form' style="background-color:blue;height:400px;width:400px;margin-left:-70px;">
+    <div class='box-login-tab' style="background-color:#000066;height:50px;"></div>
+    <div class='box-login-title' style="background-color:#000066;">
+      <div class='i i-login'></div><h2 style="color:white;">LOGIN</h2>
+    </div>
+
+    <div class='box-login' style="border:2px solid black;border-radius:20px;
+    margin-top:10px;margin-left:10px;height:300px;width:380px;height:360px;">
+      <div class='fieldset-body' id='login_form'>
+        <button onclick="openLoginInfo();" class='b b-form i i-more' title='Mais Informações'></button>
+        <form method="post" action="{% url 'userlogin' %}">
+      {% csrf_token %}
+        	<p class='field'>
+          <label for='user' style="color:black;font-size:12pt;">USERNAME</label>
+          <input style="border:2px solid black;border-radius:10px;height:40px;margin-top:10px;" type='text' id='user' name="username" title='Username' />
+          <span class='i i-warning'></span>
+        </p>
+      	  <p class='field'>
+          <label for='pass' style="color:black;font-size:12pt;">PASSWORD</label>
+          <input type='password' id='pass' style="border:2px solid black;border-radius:10px;height:40px;margin-top:10px;" name="password" title='Password' />
+          <span id='valida' class='i i-close'></span>
+        </p>
+
+
+        	<button style="margin-top:40px;width:330px;height:50px;background-color:purple;font-size:22px;
+  font-family: 'Quicksand', sans-serif;font-weight: 700;font-size: 18px;color: #fff;line-height: 40px;
+  text-align: center;border: 1px #87314e solid;opacity: 1;cursor: pointer;
+" type='submit' id='do_login' title='Log in' >Log In</button>
+          </form>
+      </div>
+    </div>
+
+  </div>
+  <div class='box-info' style="height:250px;">
+      <p><button onclick="closeLoginInfo();" class='b b-info i i-left' title='Back to Sign In'></button></p>
+
+					    <div class='line-wh'></div>
+    					<div class='line-wh'></div>
+    <button type="submit" class='b-cta' title='Sign up now!'
+            style="margin-left:5px;margin-top:50px;background-color:#000066;width:200px;"><a href="{% url 'registerpage' %}">
+        <h3 style="color:white;text-align:center;"> CREATE ACCOUNT</h3></a></button>
+  				</div>
+    <div style="margin-left:-60px;"><h2 style="color:#000066;"> <a href="{% url 'loginpage' %}"> ADMIN LOGIN</a></h2></div>
+</div>
+
+
+ <div class='icon-credits'>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a>, <a href="http://www.flaticon.com/authors/budi-tanrim" title="Budi Tanrim">Budi Tanrim</a> & <a href="http://www.flaticon.com/authors/nice-and-serious" title="Nice and Serious">Nice and Serious</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js'></script>
+
+    <script src="{% static 'login/js/index.js' %}"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+
+</body>
+</html>

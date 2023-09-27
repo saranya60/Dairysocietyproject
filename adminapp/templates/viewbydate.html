@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           Attendance Data</h1></div><br><br>
+<div style="margin-top:20px;margin-left:100px;">
+    <h6>Employee Name : {{ emp }}</h6><br>
+    <h6>Date From : {{sd}}</h6><br>
+    <h6>Date To : {{ed}}</h6>
+
+</div>
+<table width="80%" style="margin-left:100px;margin-top:30px;border:1px solid black;margin-bottom:100px;">
+    <tr style="border:1px solid black;">
+        <td><h5 style="color:brown;">Date</h5></td>
+
+        <td><h5 style="color:brown;">Attendance Status</h5></td>
+
+
+    </tr>
+
+{% for i in date1 %}
+    <tr style="border:1px solid black;">
+        <td><h6>{{i.Date}}</h6></td>
+
+        <td><h6>{{i.Attendance}}</h6></td>
+
+    </tr>
+{% endfor %}
+</table>
+<div style="border:2px solid blue;margin-left:300px;width:330px;height:65px;padding:20px;">
+    <h5>Number Of Days Present = <span style="color:green;">{{ rows }}</span></h5>
+<a href="{% url 'viewatn' %}"> <button type="button" style="background-color:blue;margin-bottom:100px;color:white;width:100px;height:50px;margin-left:430px;">BACK</button></a>
+</div>
+</body>
+<style>
+td{
+    height:60px;
+    width:200px;
+    text-align:center;
+
+}
+
+</style>
+</html>
+{% endblock %}

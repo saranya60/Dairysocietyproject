@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'webhome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="color:#000066;height:80px;padding-top:10px;text-align:center;margin-top:60px;">OUR PRODUCTS</h1><br>
+
+
+                <div class="row" style="margin-top:10px;margin-left:50px;margin-bottom:150px;">
+                        {% for i in pro %}
+                        <div id="imgdiv" class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom:20px;margin-top:5px;margin-left:60px;">
+
+
+                                   <div class="div1" style="margin-top:20px;width:350px;height:300px;background-color:white;border:2px solid black;border-radius:20px;">
+                                       <a href="{% url 'singleprod' pid=i.id %}">
+                                       <img src="{{i.Image.url}}" style="width:330px;height:280px;padding-left:15px;padding-top:15px;"></a>
+
+                               </div>
+                            <div style="text-align:center;"><h4 style="color:#000066;">{{i.Product}}</h4></div>
+                            <div style="text-align:center;"><h4 style="color:brown;">Rs. {{i.Price}}</h4></div>
+
+                        </div>
+                        {% endfor %}
+
+                    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".row").mouseenter(function(){
+                $(this).css("background-color","white")
+
+            })
+            $(".row").mouseleave(function(){
+                $(this).css("background-color","#fff")
+            })
+            $(".div1").mouseenter(function(){
+                $(this).css("background-color","orange")
+            })
+            $(".div1").mouseleave(function(){
+                $(this).css("background-color","#fff")
+            })
+        })
+    </script>
+
+
+</body>
+</html>
+{% endblock %}

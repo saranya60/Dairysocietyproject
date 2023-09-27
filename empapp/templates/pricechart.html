@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'milkcollectorhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;margin-top:50px;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+            PRICE CHART</h1></div><br><br>
+<div style="margin-left:370px;">
+<form method="post" action="{% url 'savepc' %}">
+    {% csrf_token %}
+    <input type="text" name="fat" placeholder="FAT"><br>
+    <input type="text" name="snf" placeholder="SNF"><br>
+    <input type="text" name="rate" placeholder="RATE"><br><br><br>
+    <button class="inpbutton" type="submit">Save</button>
+</form>
+</div>
+</body>
+<style>
+input{
+  width:550px;
+  height:50px;
+  border:2px solid black;
+  padding:10px;
+  font-size:16pt;
+  margin-top:25px;
+}
+.sel{
+
+  width:550px;
+  height:50px;
+  border:2px solid black;
+  padding:10px;
+  font-size:16pt;
+}
+
+.inpbutton {
+  padding: 12px 10px;
+  width:300px;
+  height: 60px;
+  margin-top:50px;
+  border: 2px solid black;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 150px;
+  background-color:purple;
+
+}
+
+</style>
+</html>
+{% endblock %}

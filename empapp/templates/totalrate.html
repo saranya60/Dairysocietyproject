@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% extends 'milkcollectorhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" style="border:2px solid black;  background-color:rgb(247, 233, 247);">
+    <div class="card-body" >
+        <div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+            TEST RESULT</h1></div><br><br>
+        <form style="margin-left:120px;" method="post" action="{% url 'savetotal' %}">
+            {% csrf_token %}
+           <table width="100%" style="margin-left:250px;">
+               <tr>
+                   <td>Date</td>
+                   <td>:</td>
+                   <td><input type="text" value="{{ dt }}" name="date1"> </td>
+               </tr>
+{% for i in cn %}
+               <tr>
+                   <td>Card Number</td>
+                   <td>:</td>
+                   <td><input type="text" value="{{i.id}}" name="card"> </td>
+               </tr>
+{% endfor %}
+               <tr>
+                   <td>Farmer Name</td>
+                   <td>:</td>
+                   <td><input type="text" value="{{ far }}" name="farmer"> </td>
+               </tr>
+{% for i in mk %}
+               <tr>
+                   <td>Total Milk (In Litre)</td>
+                   <td>:</td>
+                   <td><input type="text" value="{{ i.Milk }}" id="milk"> </td>
+               </tr>
+
+               <tr>
+                   <td>FAT</td>
+                   <td>:</td>
+                   <td><input type="text" value="{{ i.FAT }}" name="fat" id="fat"> </td>
+               </tr>
+
+               <tr>
+                   <td>SNF</td>
+                   <td>:</td>
+                   <td><input type="text" value="{{ i.SNF }}" name="snf" id="snf"> </td>
+               </tr>
+               {% endfor %}
+               {% for i in prc %}
+               <tr>
+                   <td>Rate</td>
+                   <td>:</td>
+                   <td><input type="text" id="rate" name="rate" value="{{ i.rate }}"></td>
+               </tr>
+               {% endfor %}
+               <tr>
+                   <td>Total Amount</td>
+                   <td>:</td>
+                   <td><input type="text" id="total" name="total"></td>
+               </tr>
+           </table>
+            <a href="{% url 'milktest' %}"> <button type="button" class="inpbutton">BACK</button></a>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+        $(document).ready(function(){
+            $("#card").change(function(){
+                x = document.getElementById("card").value;
+                document.getElementById("farmer").value = x;
+            })
+        })
+    </script>
+
+<script>
+        $(document).ready(function(){
+
+                x = document.getElementById("rate").value;
+                y = document.getElementById("milk").value;
+                result = x*y;
+                document.getElementById("total").value = result;
+
+        })
+    </script>
+
+
+</body>
+<style>
+input{
+  width:350px;
+  height:50px;
+  border:2px solid black;
+  padding:10px;
+  font-size:16pt;
+  border:none;
+}
+.sel{
+
+  width:350px;
+  height:50px;
+  border:2px solid black;
+  padding:10px;
+  font-size:16pt;
+}
+
+.inpbutton {
+  padding: 12px 10px;
+  width:100px;
+  height: 60px;
+  margin-top:50px;
+  border: 2px solid black;
+
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 470px;
+  background-color:blue;
+
+}
+
+</style>
+</html>
+{% endblock %}

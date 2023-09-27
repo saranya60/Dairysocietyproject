@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" style="border:2px solid black;  background-color:rgb(247, 233, 247);">
+    <div class="card-body" >
+        <div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           Edit Farmer Details</h1></div><br><br>
+        <form style="margin-left:120px;" class="form-inline" method="post" action="{% url 'farmerupdate' dataid=far.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input name="card" value="{{far.Cardno}}" type="text" class="form-field" ><br>
+
+            <input name="name" value="{{far.Name}}" type="text" class="form-field" ><br>
+
+            <textarea style="padding-top:7px;"  name="adrs" class="form-field">{{far.Address}}</textarea><br>
+            <input type="text" name="dob" style="color:black;" class="form-field" value="{{far.Dateofbirth}}"><br>
+            <div class="form-field" style="background-color:white;color:black;">Gender :
+            <input type="radio" value="Male" name="gender" id="male"
+                {% if emp.Gender == 'Male' %} checked {% endif %}>Male
+                <input type="radio" value="Female" name="gender" id="Female"
+                {% if emp.Gender == 'Female' %} checked {% endif %}>Female
+                <input type="radio" value="Others" name="gender" id="Others"
+                {% if emp.Gender == 'Others' %} checked {% endif %}>Others
+
+            </div><br>
+
+           <br><input name="mobile" type="tel" pattern="[0-9]{10}" class="form-field" value="{{far.Mobile}}"><br>
+            <input name="email" style="margin-bottom:180px;" type="email" class="form-field" value="{{far.Email}}">
+            <div style="margin-left:-520px;margin-top:50px;"><img src="{{far.Image.url}}" style="width:100px;height:100px;"></div>
+            <input name="fimage" style="margin-top:-20px;" class="form-field" type="file"><br>
+            <button style="margin-top:50px;  background-color: purple;height:50px;" type="submit" class="inpbutton">Update</button>
+        </form>
+    </div>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+.form-field {
+    color:black;
+    border-radius:10px;
+    background-color:white
+    ;
+    height: 50px;
+    width: 600px;
+    margin-left:50px;
+    padding: 0 16px;
+    border: 2px solid #000000;
+    font-size: 20px;
+    font-family: "Rubik", sans-serif;
+    outline: 0;
+    transition: 0.2s;
+    margin-top: 20px;
+}
+
+.form-field:focus {
+  border-color: #0f7ef1;
+}
+
+.inpbutton {
+  padding: 12px 10px;
+  width:300px;
+  height: 100px;
+  border: 0;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 200px;
+
+}
+
+</style>
+</html>
+{% endblock %}

@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Sales Home</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- site icon -->
+      <link rel="icon" href="{% static 'sales/images/fevicon.png' %}" type="image/png" />
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{% static 'sales/css/bootstrap.min.css' %}" />
+      <!-- site css -->
+      <link rel="stylesheet" href="{% static 'sales/style.css' %}" />
+      <!-- responsive css -->
+      <link rel="stylesheet" href="{% static 'sales/css/responsive.css' %}" />
+      <!-- color css -->
+      <link rel="stylesheet" href="{% static 'sales/css/colors.css' %}" />
+      <!-- select bootstrap -->
+      <link rel="stylesheet" href="{% static 'sales/css/bootstrap-select.css' %}" />
+      <!-- scrollbar css -->
+      <link rel="stylesheet" href="{% static 'sales/css/perfect-scrollbar.css' %}" />
+      <!-- custom css -->
+      <link rel="stylesheet" href="{% static 'sales/css/custom.css' %}" />
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body class="dashboard dashboard_1">
+      <div class="full_container">
+         <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+               <div class="sidebar_blog_1">
+                  <div class="sidebar-header">
+                     <div class="logo_section">
+                        <a href="index.html"><img class="logo_icon img-responsive" src="{% static 'sales/images/logo/logo_icon.png' %}" alt="#" /></a>
+                     </div>
+                  </div>
+                  <div class="sidebar_user_info">
+                     <div class="icon_setting"></div>
+                     <div class="user_profle_side">
+                        <div class="user_img"><img class="img-responsive" src="{% static 'sales/images/layout_img/user_img.jpg' %}" alt="#" /></div>
+                        <div class="user_info">
+                           {% if request.session.Empname %}
+                           <h6>{{request.session.Empname}}</h6>
+                           {% endif %}
+                           <p><span class="online_animation"></span> Online</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="sidebar_blog_2" style="background-color:#000066;">
+
+                  <ul class="list-unstyled components">
+                     <li><a href="{% url 'saleshome' %}"><h4> Home</h4></a></li>
+                     <li>
+                        <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                           <h5>Products</h5></a>
+                        <ul class="collapse list-unstyled" id="element">
+                           <li><a href="{% url 'addproduct' %}"> <h5>Add Product</h5></a></li>
+                           <li><a href="{% url 'dispproduct' %}"> <h5>Display Product</h5></a></li>
+
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#element1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                           <h5>Sales Record</h5></a>
+                        <ul class="collapse list-unstyled" id="element1">
+                           <li><a href="{% url 'sales' %}"> <h5>Add Sales Record</h5></a></li>
+                           <li><a href="{% url 'viewsalesrecord' %}"> <h5>Display Sales Record</h5></a></li>
+                           <li><a href="{% url 'salebill' %}"> <h5>View Bill</h5></a></li>
+                           <li><a href="{% url 'orderspage' %}"> <h5>View Orders</h5></a></li>
+
+
+                            <li>
+
+                        </ul>
+                     </li>
+
+
+                     <li>
+                        <a href="#element3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                           <h5>Customer</h5></a>
+                        <ul class="collapse list-unstyled" id="element3">
+                           <li><a href="{% url 'customer' %}"> <h5>Add Customer</h5></a></li>
+                           <li><a href="{% url 'customerview' %}"> <h5>Display Customer</h5></a></li>
+
+                        </ul>
+                     </li>
+                            <li>
+                            <a href="#element2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                           <h5>Sales Income</h5></a>
+                        <ul class="collapse list-unstyled" id="element2">
+                           <li><a href="{% url 'viewdaysales' %}"> <h5>For A Day</h5></a></li>
+                           <li><a href="{% url 'salerange' %}"> <h5>For A Date Range</h5></a></li>
+
+                  </ul>
+               </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+               <!-- topbar -->
+               <div class="topbar">
+                  <nav class="navbar navbar-expand-lg navbar-light">
+                     <div class="full">
+                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                        <div class="logo_section">
+                           <a href="index.html"></a>
+                        </div>
+                        <div class="right_topbar">
+                           <div class="icon_info">
+
+                              <ul class="user_profile_dd">
+                                 <li>
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                       {% if request.session.Empname %}
+                                       <span class="name_user">{{request.session.Empname}}</span>
+                                    {% endif %}
+                                    </a>
+                                    <div class="dropdown-menu">
+
+                                       <a class="dropdown-item" href="{% url 'emplogout' %}"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </nav>
+               </div>
+               <div class="main-container">
+		<div class="pd-ltr-20">
+{% block content %}
+			<div class="card-box pd-20 mb-30" style="height:500px;">
+
+
+						<h1 class="font-20 weight-500 mb-10 text-capitalize">
+							</h1>
+				<div style="margin-top:50px;width:1000px;padding-left:100px;padding-right:100px;padding-top:30px;px;text-align:center;background-color:#000066;height:150px;">
+						<h1 style="color:white;font-size:28pt;">CO-OPERATIVE MILK SUPPLY SOCIETY VELLIKULANGARA</h1></div>
+						<img src="{% static 'vendors/images/logo2.png' %}" style="border-radius:10px;margin-left:80px;margin-top:50px;width:200px;height:200px;" alt="">
+<div style="margin-top:-140px;margin-left:400px;width:500px;height:70px;">
+    <h4 style="font-family:Times New Roman;font-size:14pt;color:black;">Vellikulangara Co-operative Milk Supply Society Ltd No. D 1842 is one of the most important and biggest traditional society in Kozhikode district.
+    It was Registered in 1962 under the Kerala Co-operative Societies Act 1956.</h4>
+					</div>
+				</div>
+			<div class="row" style="margin-bottom:100px;margin-top:90px;">
+				<div id="div1" class="col-xl-3 mb-30" style="height:85px;margin-left:-30px;">
+					<a href="{% url 'viewdaysales' %}"><div style="border:1px solid black;border-radius:10px;height:85px;background-color:orange;
+					margin-left:60px;"><h5 style="padding-top:30px;text-align:center;color:black;">DAY INCOME</h5></div></a>
+				</div>
+				<div id="div2" class="col-xl-3 mb-30">
+					<a href="{% url 'salerange' %}"> <div style="border:1px solid black;border-radius:10px;height:85px;background-color:orange;
+					margin-left:60px;">
+                       <h5 style="padding-top:30px;text-align:center;color:black;">MONTH INCOME</h5></div></a>
+				</div>
+				<div id="div3" class="col-xl-3 mb-30" style="height:85px;">
+					<a href="{% url 'salebill' %}"><div style="border:1px solid black;border-radius:10px;height:85px;background-color:orange;
+					margin-left:60px;"><h5 style="padding-top:30px;text-align:center;color:black;">BILL</h5></div></a>
+				</div>
+				<div id="div4" class="col-xl-3 mb-30" style="height:85px;">
+					<a href="{% url 'orderspage' %}"><div style="border:1px solid black;border-radius:10px;height:85px;background-color:orange;
+					margin-left:60px;"><h5 style="padding-top:30px;text-align:center;color:black;">ORDERS</h5></div></a>
+				</div>
+
+    </div>
+
+
+			{% endblock %}
+			<div class="footer-wrap pd-20 mb-20 card-box" style="margin-top:900px;">
+				Co-operative Milk Society Vellikulangara <a href="https://github.com/dropways" target="_blank">Malabar Milk</a>
+			</div>
+		</div>
+</div>
+</div>
+                    </div>
+         </div>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      <!-- jQuery -->
+      <script src="{% static 'sales/js/jquery.min.js' %}"></script>
+      <script src="{% static 'sales/js/popper.min.js' %}"></script>
+      <script src="{% static 'sales/js/bootstrap.min.js' %}"></script>
+      <!-- wow animation -->
+      <script src="{% static 'sales/js/animate.js' %}"></script>
+      <!-- select country -->
+      <script src="{% static 'sales/js/bootstrap-select.js' %}"></script>
+      <!-- owl carousel -->
+      <script src="{% static 'sales/js/owl.carousel.js' %}"></script>
+      <!-- chart js -->
+      <script src="{% static 'sales/js/Chart.min.js' %}"></script>
+      <script src="{% static 'sales/js/Chart.bundle.min.js' %}"></script>
+      <script src="{% static 'sales/js/utils.js' %}"></script>
+      <script src="{% static 'sales/js/analyser.js' %}"></script>
+      <!-- nice scrollbar -->
+      <script src="{% static 'sales/js/perfect-scrollbar.min.js' %}"></script>
+      <script>
+         var ps = new PerfectScrollbar('#sidebar');
+      </script>
+      <!-- custom js -->
+      <script src="{% static 'sales/js/custom.js' %}"></script>
+      <script src="{% static 'sales/js/chart_custom_style1.js' %}"></script>
+   </body>
+<style>
+h5{
+   color:white;
+}
+</style>
+</html>

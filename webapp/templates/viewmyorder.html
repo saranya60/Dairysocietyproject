@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+{% extends 'webhome.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 style="color:#000066;height:80px;padding-top:10px;text-align:center;margin-top:60px;">MY ORDERS</h2><br>
+
+<table width="70%" style="margin-left:200px;">
+    <tr>
+        <td style="font-size:16pt;color:brown;font-weight:bold;height:100px;">Date</td>
+        <td style="font-size:16pt;color:brown;font-weight:bold;height:100px;">Product</td>
+        <td style="font-size:16pt;color:brown;font-weight:bold;height:100px;">Quantity</td>
+        <td style="font-size:16pt;color:brown;font-weight:bold;height:100px;">Total</td>
+    </tr>
+
+
+    {% for i in data %}
+
+<tr>
+    <td>{{i.Date}}</td>
+    <td>{{i.Product}}</td>
+    <td>{{i.Quantity}}</td>
+    <td>Rs. {{i.Total}}</td>
+
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>
+<style>
+td{
+    font-size:14pt;
+    color:#000066;
+    font-weight:bold;
+    text-align:center;
+    height:120px;
+}
+tr{
+    border:1px solid black;
+}
+</style>
+{% endblock %}

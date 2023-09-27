@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           View Designations</h1></div><br><br>
+<table width="50%" style="margin-left:250px;border:1px solid black;margin-bottom:20px;">
+    <tr style="border:1px solid black;height:60px;">
+        <th style="text-align:center;"><h4>Designation</h4></th>
+        <th><h4>Options</h4></th>
+    </tr>
+    {% for i in data %}
+
+    <tr style="border:1px solid black;height:60px;">
+        <td style="text-align:center;">{{i.Designation}}</td>
+        <td>
+            <a href="{% url 'editpost' dataid=i.id %}" ><img src="{% static 'src/images/editpurple.png' %}" width="25px" height="25px"> </a>
+          <a href="{% url 'postdelete' dataid=i.id %}" ><img style="margin-left:20px;" src="{% static 'src/images/dltpurple.png' %}" width="25px" height="25px"></a>
+
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+<style>
+td{
+    font-size:14pt;
+    font-weight:bold;
+}
+</style>
+</html>
+{% endblock %}

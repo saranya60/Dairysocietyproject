@@ -1,0 +1,97 @@
+@keyframes slideinleft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform : translateX(0);
+    }
+}
+.slideleft{
+    transform : translateX(-100%);
+    animation : slideinleft 1s ease-in-out forwards;
+}
+.fadein {
+	opacity: 0;
+	animation : fadeIn 1s ease-in-out forwards;
+
+}
+@keyframes fadeIn {
+	0% {
+		opacity:0;
+		}
+	100% {
+		opacity:1;
+		}
+}
+@keyframes imageanim {
+	0% {
+		transform :scale(1);
+		opacity : 1;
+	}
+	50% {
+		transform: scale(1.2);
+		opacity: 1;
+	}
+	100% {
+		transform :scale(1);
+		opacity : 1;
+	}
+}
+.imganim {
+	animation : imageanim 3s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100%{
+    transform:scale(1);
+       }
+    50% {
+    transform:scale(1.2);
+    }
+}
+.pulse{
+    animation: pulse 1s ease-in-out infinite
+}
+@keyframes rotate{
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+
+}
+.rotate{
+    animation:rotate 15s linear infinite;
+}
+@keyframes anim {
+	0% { color : yellow; }
+	50% { color : white; }
+	100% { color : orange; }
+}
+@keyframes anim2 {
+	0% { color : blue; }
+	50% { color : red; }
+	100% { color : green; }
+}
+@keyframes anim3 {
+	0% { color : yellow; }
+	50% { color : red; }
+	100% { color : white; }
+}
+.textanimation {
+	animation: anim2 2s infinite;
+
+}
+.textanimation2 {
+	animation: anim2 4s infinite;
+	transition:
+}
+.textanim3 {
+	animation: anim3 2s infinite;
+
+}
+li {
+	color:white;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:2px solid black;
+        border-radius:30px;width:100%;">
+    <h1>VIEW ORDERS</h1></div><br><br>
+<table width="100%">
+    <tr>
+        <td class="th">Date</td>
+        <td class="th">Customer</td>
+
+        <td class="th">Total</td>
+
+    </tr>
+    {% for i in data %}
+    <tr style="margin-top:20px;">
+        <td>{{i.Date}} </td>
+        <td>{{i.Customer}}</td>
+
+        <td>{{i.Total}}</td>
+
+
+
+    </tr>
+    {% endfor %}
+</table>
+</body>
+<style>
+h1{
+    color:rgb(28, 4, 92);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding-top:10px;
+    text-align:center;
+    border-radius:30px;
+
+}
+button {
+  padding: 12px 10px;
+  width:200px;
+  height: 60px;
+  background-color:blue;
+  border: 0;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 800px;
+  margin-bottom:10px;
+
+}
+.th{
+    font-size:16pt;
+    font-weight:bold;
+    width:10%;
+    height:65px;
+    text-align:center;
+
+    border-radius:15px;
+    background-color:rgb(247, 166, 233);
+
+
+}
+td{
+    width:10%;
+    height:120px;
+    text-align:center;
+    font-weight:600;
+    border-radius:40px;
+    background-color:rgb(218, 236, 245);
+    font-size:14pt;
+    font-family:Times New Roman;
+
+}
+
+</style>
+
+</html>
+{% endblock %}

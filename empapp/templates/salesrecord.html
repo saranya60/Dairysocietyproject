@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+{% extends 'saleshome.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div>
+    <h1>ADD SALES RECORD</h1>
+
+</div>
+<div class="divform">
+    <form method="post" action="{% url 'savesales' %}">
+        {% csrf_token %}
+        <table width="100%">
+            <tr>
+                <td>Date</td>
+                <td>:</td>
+                <td><input type="date" name="date"></td></tr>
+        <tr>
+
+        <tr>
+
+            <td>Customer</td>
+            <td>:</td>
+            <td><select name="customer" class="txt1">
+            <option>Select Customer</option>
+            {% for i in cus %}
+            <option>{{i.Customer}}</option>
+            {% endfor %}
+            </select></td>
+        </tr>
+
+            <tr>
+            <td>Product</td>
+            <td>:</td>
+            <td><select name="product" id="product" class="txt1">
+            <option>Select Product</option>
+            {% for i in prd %}
+            <option value="{{i.Price}}">{{i.Product}}</option>
+
+            {% endfor %}
+            </select></td></tr>
+
+
+
+
+            <tr>
+                <td>Price</td>
+                <td>:</td>
+                <td><input type="text" id="price" name="sprice"></td></tr>
+        <tr>
+            <td>Quantity</td>
+            <td>:</td>
+            <td><input type="number" name="quantity" id="qty" placeholder="0" min="1"></td></tr>
+
+            <tr><td>Total Price </td>
+                <td>:</td>
+                <td><input type="text" id="total" name="total"></td></tr>
+        </table>
+        <button type="submit">ADD</button><br>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#product").change(function(){
+                x = document.getElementById("product").value;
+                document.getElementById("price").value = x;
+            })
+        })
+
+    </script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function(event){
+        var dropdown = document.getElementById("product");
+        var stext = dropdown.options[dropdown.selectedIndex].text;
+        var hiddenInput = document.createElement("input");
+        hiddenInput.setAttribute("type","hidden");
+        hiddenInput.setAttribute("name","product");
+        hiddenInput.setAttribute("value",stext);
+        this. appendChild(hiddenInput);
+    });
+
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<script>
+        $(document).ready(function(){
+            $("#qty").change(function(){
+                x = document.getElementById("qty").value;
+                y = document.getElementById("price").value;
+                result = x*y;
+                document.getElementById("total").value = result;
+            })
+        })
+    </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+td{
+    font-size:14pt;
+    color:black;
+    font-weight:bold;
+    height:60px;
+
+}
+.divform{
+    margin-top:50px;
+    margin-left:100px;
+}
+
+input{
+    width:550px;
+    height:50px;
+    padding:10px;
+    color:black;
+    border:2px solid black;
+    border-radius:10px;
+    font-size:14pt;
+    margin-left:50px;
+    margin-bottom:15px;
+    margin-top:15px;
+
+}
+.txt1{
+    width:550px;
+    height:50px;
+    padding:10px;
+    color:black;
+    border:2px solid black;
+    border-radius:10px;
+    font-size:14pt;
+    margin-left:50px;
+    margin-bottom:15px;
+    margin-top:15px;
+
+}
+label{
+    margin-top:15px;
+    color:black;
+    font-weight:500;
+    font-size:14pt;
+}
+h1{
+    margin-left:300px;
+    margin-top:100px;
+    font-size:36pt;
+    font-weight:bold;
+    color:#000066;
+}
+button{
+    width:200px;
+    height:50px;
+    border-radius:10px;
+    background-color:#000066;
+    color:white;
+    margin-left:200px;
+    margin-top:50px;
+}
+</style>
+</html>
+{% endblock %}

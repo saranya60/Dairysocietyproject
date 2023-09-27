@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% extends 'saleshome.html' %}
+{% block content %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>product display</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{% static 'assets/styletable.css' %}">
+
+</head>
+<body>
+<h2 style="text-align:center;margin-top:50px;">Product Details</h2><br><br><br>
+<div class="table-users">
+
+   <table cellspacing="0" width="100%">
+<tbody>
+    <tr style="border:1px solid grey;text-align:center;">
+        <td><h4>Product Name</h4></td>
+        <td><h4>Description</h4></td>
+        <td><h4>Price</h4></td>
+        <td><h4>Image</h4></td>
+        <td><h4>Options</h4></td>
+
+    </tr>
+            {% for i in data %}
+
+    <tr style="border:1px solid grey;text-align:center;">
+        <td width="20%">{{i.Product}}</td>
+        <td style="text-align:left;" width="20%">{{i.Description}}</td>
+        <td>{{i.Price}}</td>
+        <td><img src="{{i.Image.url}}" width="200px" height="150px"></td>
+          <td><a href="{% url 'editproduct' dataid=i.id %}"><img src="{% static 'img/editpurple.png' %}" width="30px" height="30px"></a></td>
+          <td><a href="{% url 'deleteproduct' dataid=i.id %}"><img src="{% static 'img/dltpurple.png' %}" width="30px" height="30px"></a></td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+td{
+    color:black;
+    font-weight:bold;
+    font-size:12
+    pt;
+    }
+</style>
+</html>
+{% endblock %}

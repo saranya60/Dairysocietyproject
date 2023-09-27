@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends 'saleshome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>ADD CUSTOMER</h1>
+
+</div>
+<div class="divform">
+    <form method="post" action="{% url 'savecustomer' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" placeholder="Customer Name" name="customer" required><br><br>
+        <input type="text" placeholder="Place" name="place" required><br><br>
+        <input name="mobile" type="tel" pattern="[0-9]{10}" required placeholder="Mobile Number"><br><br>
+        <button type="submit">ADD</button><br>
+    </form>
+</div>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+.divform{
+    margin-top:50px;
+    margin-left:200px;
+}
+
+input{
+    width:550px;
+    height:50px;
+    padding:10px;
+    color:black;
+    border:2px solid black;
+    border-radius:10px;
+    font-size:14pt;
+
+}
+.txt1{
+    width:550px;
+    height:100px;
+    padding:10px;
+    color:black;
+    border:2px solid black;
+    border-radius:10px;
+    font-size:14pt;
+
+}
+label{
+    margin-top:15px;
+    color:black;
+    font-weight:500;
+    font-size:14pt;
+}
+h1{
+    margin-left:300px;
+    margin-top:50px;
+    font-size:36pt;
+    font-weight:bold;
+    color:#000066;
+}
+button{
+    width:200px;
+    height:50px;
+    border-radius:10px;
+    background-color:#000066;
+    color:white;
+    margin-left:170px;
+    margin-top:30px;
+}
+</style>
+</html>
+{% endblock %}

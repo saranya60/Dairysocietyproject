@@ -1,0 +1,976 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dairy Farm</title>
+	<link href="{% static 'mystyle.css' %}" rel="stylesheet">
+  	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/global.css' %}" rel="stylesheet">
+	<link href="{% static 'css/index.css' %}" rel="stylesheet">
+	<link rel="
+	stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}" />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300&display=swap" rel="stylesheet"> 
+	<script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+  </head>
+<body>
+<div style="width:auto;height:25px;">
+	<div style="margin-top:20px;">
+<h6 style="margin-left:20px;" class="textanim3">Call : 0496 2512525
+	<span style="margin-left:850px;"> Email : malabarmilk@gmail.com</span></h6>
+</div>
+</div>
+
+<section id="header" class="clearfix cd-secondary-nav">
+	<nav class="navbar nav_t" style="background-color:#000066;">
+		<div class="container" style="height:80px;background-color:white;color:white;border:2px solid #000066;">
+		    <div class="navbar-header page-scroll">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a style="padding-top:15px;" class="navbar-brand" href="index.html"> <span style="color:#000066;">Malabar</span>
+					<img alt="abc" src="{% static 'images/logo2.png' %}"> <span style="color:#000066;">Milk</span></a>
+			</div>
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+			style="background-color:white;">
+			  	 <ul class="nav navbar-nav" style="padding-top:15px;">
+				
+				<li class="linav" style="background-color:white;border-radius:15px;">
+					<a class="m_tag" style="color:#000066;" href="{% url 'homepage' %}">Home</a></li>
+				<li style="background-color:white;border-radius:15px;" class="dropdown linav">
+					  <a style="color:#000066;" class="m_tag" href="" data-toggle="dropdown" role="button" aria-expanded="false">
+						  Shop<span class="caret"></span></a>
+					  <ul class="dropdown-menu drop_3" role="menu">
+					    <li><a href="{% url 'allproducts' %}">Shop</a></li>
+
+					  </ul>
+                   </li>
+
+				   
+				 <li class="linav" style="background-color:white;border-radius:15px;">
+					 <a style="color:#000066;" class="m_tag" href="{% url 'viewgal' %}">Gallery</a></li>
+
+				<li class="linav" style="background-color:white;border-radius:15px;">
+					<a class="m_tag" href="{% url 'aboutpage' %}" style="color:#000066;">About us</a></li>
+
+
+				<li class="linav" style="background-color:white;border-radius:15px;">
+					<a style="color:#000066;" class="m_tag" href="{% url 'contactpage' %}">Contact Us</a></li>
+			</ul>
+                 
+				 <ul class="nav navbar-nav navbar-right" style="padding-top:15px;">
+				
+<!--				<li style="background-color:white;border-radius:20px;">-->
+<!--                    <a style="color:#000066;" class="m_tag" href="#aboutModal" data-toggle="modal" data-target="#myModal">-->
+<!--                        <i class="fa fa-search"></i></a></li>-->
+				<li></li>
+					 <li></li>
+		{% if request.session.Username %}
+
+	            <li style="background-color:white;border-radius:10px;" class="dropdown linav">
+					  <a style="color:#000066;" class="m_tag" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                          <img src="{% static 'images/cart.jpeg' %}" width="20px" height="20px"> </a>
+					  <ul class="dropdown-menu drop_1" role="menu">
+						<li>
+						 <div class="drop_1i clearfix">
+<!--						  <div class="col-sm-6">-->
+<!--						   <div class="drop_1il clearfix"><h5 class="mgt">{{rows}} items</h5></div>-->
+<!--						  </div>-->
+						  <div class="col-sm-6">
+						   <div class="drop_1il text-right clearfix"><h5 class="mgt"><a href="{% url 'viewcart' %}">VIEW CART</a></h5></div>
+						  </div>
+						 </div>
+						<div class="col-sm-6"  style="margin-top:20px;">
+						   <div class="drop_1il text-right clearfix"><h5 class="mgt">
+								   <a href="{% url 'myorders' %}">MY ORDERS</a></h5></div>
+						  </div>
+						</li>
+
+					  </ul>
+                    </li>
+<li></li>
+
+					 <li style="background-color:white;border:3px solid #000066;border-radius:10px;margin-left:10px;" class="dropdown linav">
+					  <a style="color:#000066;" class="m_tag" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                         {{request.session.Username}}<span class="caret"></span></a>
+					  <ul class="dropdown-menu drop_3">
+				        <li><a href="{% url 'userlogout' %}">Logout</a></li>
+
+					  </ul>
+                   </li>
+
+							 {% else %}
+					<li style="background-color:white;border-radius:10px;margin-left:10px;">
+					 <a class="m_tag linav" href="{% url 'registerlogin' %}" style="color:black;">Login</a></li>
+
+
+					 {% endif %}
+
+			</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	
+	</section>
+	 {% block content %}
+
+<section id="top">
+ <div class="container" style="margin-top:50px;background-color:#000066;">
+  <div class="row">
+   <div class="top_1 clearfix">
+   <div class="col-sm-4" style="margin-left:-100px;">
+	  <div class="top_1m text-center clearfix">
+
+           <img alt="" src="{% static 'images/logo2.png' %}" class="rotate"
+				style="margin-left:50px;margin-top:30px;border:2px solid green;filter: contrast(150%);
+           border-radius:150px;" width="200px" height="200px"><br>
+		  <h4 style="margin-left:50px;font-family: courier, courier new, monospace;" class="textanim3">MALABAR MILK</h4>
+
+	  </div>
+	 </div>
+	   <div class="col-sm-5">
+			<div style="width:900px;padding-right:100px;
+			padding-top:35px;px;height:285px;">
+				<h2 class="imganim" style="color:white;font-size:26pt;text-align:center;padding-left:5px;line-height:60px;">
+					CO-OPERATIVE MILK SUPPLY SOCIETY VELLIKULANGARA</h2>
+			<h5 class="textanimation2" style="padding-left:20px;margin-left:5px;font-family:Times New Roman;background-color:white;height:95px;border:3px solid green;
+			margin-top:20px;border-bottom:none;padding-top:15px;">Co-operative Milk Supply Society Vellikulangara Ltd No. D 1842 is one of the most important and biggest traditional society in Kozhikode district.
+    It was Registered in 1962 under the Kerala Co-operative Societies Act 1956.</h5>
+			</div>
+
+	   </div>
+
+<!--	 <div class="col-sm-3">-->
+<!--	  <div class="top_1r text-right clearfix">-->
+<!--	   <h6 class="big mgt"><a class="button mgt" href="#"><i class="fa fa-envelope-o"></i> Get in Touch</a></h6>-->
+<!--	  </div>-->
+<!--	 </div>-->
+   </div>
+  </div>
+ </div>
+</section>
+
+<div class="main clearfix" style="margin-top:50px;">
+ <div class="main_1 clearfix">
+  <section id="center" class="center_home clearfix">
+ <div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
+	  <!-- Overlay -->
+<!--	  <div class="overlay"></div>-->
+	
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+		<li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
+		<li data-target="#bs-carousel" data-slide-to="1" class=""></li>
+		<li data-target="#bs-carousel" data-slide-to="2" class=""></li>
+	  </ol>
+	  
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner">
+		<div class="item slides">
+		  <div class="slide-2"></div>
+		  <div class="hero clearfix">
+		    <div class="col-sm-12">
+			  <h1 style="color:#000066;">ORGANIC</h1>
+			  <h3 style="color:purple;">MILK PRODUCTS</h3>
+			  <h5 style="color:black;">We provide our customers with a wide variety of dairy products, from organic milk to butter and cheese.</h5>
+			  <h5 class="big"><a class="button" style="background-color:blue;" href="#">Shop  Now</a></h5>
+			</div>
+		  </div>
+		</div>
+
+		<div class="item slides active">
+		  <div class="slide-1"></div>
+		  <div class="hero clearfix">
+		    <div class="col-sm-12" style="margin-top:-20px;">
+			  <h1 style="color:orange;margin-top:-60px;" >ORGANIC</h1>
+			  <h3 style="color:goldenrod;">MILK PRODUCTS</h3>
+  <p class="col_4">
+We provide our customers with a wide variety of dairy products, from organic milk to ghee and ice creams.
+  </p>
+			</div>
+		  </div>
+		</div>
+		<div class="item slides">
+		  <div class="slide-3"></div>
+		  <div class="hero clearfix">
+		    <div class="col-sm-12">
+			  <h1 style="color:#000066;">ORGANIC</h1>
+			  <h3 style="color:purple;">MILK PRODUCTS</h3>
+		  <p class="col_4" style="color:black;">
+			  We provide our customers with a wide variety of dairy products, from organic milk to butter and cheese.
+</p>
+
+			</div>
+		  </div>
+	  </div>
+	 </div>
+</div>
+</section>
+ </div>
+</div>
+	<div class="imganim" style="margin-left:180px;margin-top:-10px;width:1000px;background-image: url({% static 'images/kp.jpg' %});
+ background-position:center;height:400px;border:5px solid orange;" >
+	   <h3 style="color:brown;font-weight:bold;text-align:center;margin-top:80px;">QUALITY TESTED BY TIME</h3><br>
+	   <p style="color:black;padding-top:20px;font-size:14pt;font-weight:bold;text-align:center;">We are the leading producer and processor of store-brand <br> organic dairy products.. <br>
+		   We have quality dairy products that are tested by time..</p>
+	 </div>
+
+
+
+<section id="farm">
+ <div class="container">
+  <div class="row">
+   <div class="farm_1 text-center clearfix" style="margin-top:-250px;">
+     <div class="col-sm-12">
+	  <h2 class="mgt textanimation2">WELCOME TO OUR SOCIETY</h2>
+	 </div>
+   </div>
+   <div class="farm_2 clearfix" style="margin-top:50px;">
+     <div class="col-sm-4">
+	  <div class="farm_2i text-center clearfix">
+	    <div class="grid clearfix">
+		  <figure class="effect-jazz">
+			<a href="#"><img src="{% static 'images/dm.jpg' %}" class="iw imganim" alt="img25"></a>
+		  </figure>
+	  </div>
+	    <h4>OUR PRODUCTS</h4>
+		<p>We provide our customers with a wide variety of dairy products, from organic milk to butter and cheese.</p>
+	  </div>
+	 </div>
+	 <div class="col-sm-4">
+	  <div class="farm_2i text-center clearfix">
+	    <div class="grid clearfix">
+		  <figure class="effect-jazz">
+			<a href="#"><img src="{% static 'images/pr.jpg' %}" style="width:300px; height:235px;" class="imganim" alt="img25"></a>
+		  </figure>
+	  </div>
+	    <h4>WHY ORGANIC?</h4>
+		<p>Purchase the best organic dairy products for your family at our <br> online shop and save more money than anywhere else.</p>
+	  </div>
+	 </div>
+	 <div class="col-sm-4">
+	  <div class="farm_2i text-center clearfix">
+	    <div class="grid clearfix">
+		  <figure class="effect-jazz">
+			<a href="#"><img src="{% static 'images/ccc.jpg' %}" style="width:300px; height:235px;" class="imganim" alt="img25"></a>
+		  </figure>
+	  </div>
+	    <h4>WORKING PROCESS</h4>
+		<p>We collect pure milk from farmers and convert it into organic milk products.Our Society combines modern methods of dairy production with traditions.</p>
+	  </div>
+	 </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="prod">
+ <div class="container">
+  <div class="row">
+   <div class="farm_1 text-center clearfix">
+     <div class="col-sm-12">
+	  <h2 class="mgt textanimation2">OUR PRODUCTS</h2>
+	 </div>
+   </div>
+   <div class="prod_1 clearfix">
+	 <div class="carousel slide" id="myCarousel1">
+
+        <div class="carousel-inner" style="height:400px;overflow:scroll;">
+			{% for i in data %}
+            <div>
+				<div class="col-sm-4" id="product" >
+
+				<figure class="effect-jazz">
+				<a href=""><img src="{{i.Image.url}}"  style="width:320px;height:280px;border:2px solid blue;" alt="img25"></a>
+				</figure>
+					<div class="prod_1ib text-center clearfix">
+				<h5>{{i.Product}}</h5>
+					<h6 class="col_1 bold">Rs. {{i.Price}}</h6>
+				<ul>
+				<li><a class="bg_1" href="#"><i class="fa fa-search"></i></a></li>
+				<li><a class="bg_2" href="#"><i class="fa fa-shopping-cart"></i></a></li>
+				</ul>
+				</div>
+				</div>
+				</div>
+				{% endfor %}
+              </div>
+
+        </div>
+	   <nav>
+			<ul class="control-box pager mgb">
+				<li><a data-slide="prev" href="#myCarousel1" class=""><i class="glyphicon glyphicon-chevron-left"></i></a></li>
+				<li><a data-slide="next" href="#myCarousel1" class=""><i class="glyphicon glyphicon-chevron-right"></i></a></li>
+				</ul>
+	  </nav>
+	</div>
+   </div>
+  </div>
+
+</section>
+
+<section id="choose">
+ <div class="container">
+  <div class="row">
+   <div class="farm_1 text-center clearfix">
+     <div class="col-sm-12">
+	  <h1 class="mgt textanimation2">WHY CHOOSE US</h1>
+	 </div>
+   </div>
+   <div class="choose_1 clearfix">
+     <div class="col-sm-4">
+	   <div class="choose_1l text-right clearfix">
+	    <span><i class="fa fa-home"></i></span>
+	    <h4><a href="#">MODERN FARM</a></h4>
+		<p>Our Society is a fully innovative society, which combines modern methods of dairy production with traditions.</p>
+		<hr>
+		 <span><i class="fa fa-home"></i></span>
+	    <h4><a href="#">NO PESTICIDES</a></h4>
+		<p>
+The quality of milk is tested by time. Quality is tested daily for every milk sample collecting from farmers.
+		</p>
+	   </div>
+	 </div>
+	 <div class="col-sm-4">
+	    <div class="choose_1m clearfix">
+		 <div class="grid clearfix">
+		  <figure class="effect-jazz">
+			<a href="#"><img src="{% static 'images/ddd.jpg' %}" class="iw" alt="img25">
+			<img src="{% static 'images/kp.jpg' %}" class="iw" alt="img25"></a>
+		  </figure>
+	  </div>
+		</div>
+	 </div>
+	 <div class="col-sm-4">
+	   <div class="choose_1l text-left clearfix">
+	    <span><i class="fa fa-home"></i></span>
+	    <h4><a href="#">100% ORGANIC</a></h4>
+		<p>We collect pure milk from farmers and convert it into organic milk products. </p>
+		<hr>
+		 <span><i class="fa fa-home"></i></span>
+	    <h4><a href="#">NATURAL FEED</a></h4>
+		<p>
+			The society has a trained Artificial Insemination (AI) and Veterinary First Aid
+(VFA) Worker who looks after the job regularly through Single or Cluster Centre
+basis. Generally the milk union supplies liquid nitrogen, semen doses and
+veterinary medicine, cattle feed, fodder seed to the society on cost for the
+members.
+	   </div>
+	 </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="sale">
+ <div class="sale_m clearfix">
+  <div class="container">
+  <div class="row">
+   <div class="sale_1 clearfix">
+    <div class="col-sm-12">
+	 <h2 class="mgt col_5">SUMMER SALE</h2>
+	 <h4 class="col"><span class="col_1">-40%</span> ON ALL PRODUCTS </h4>
+	 <p class="col_4">Purchase the best organic dairy products for your family at our <br> online shop and save more money than anywhere else.</p>
+	 <h5><a class="button" href="#">SHOP NOW</a></h5>
+	</div>
+   </div>
+  </div>
+ </div>
+ </div>
+</section>
+
+<section id="about_h">
+ <div class="container">
+  <div class="row">
+   <div class="farm_1 text-center clearfix">
+     <div class="col-sm-12">
+	  <h2 class="mgt textanimation2">ABOUT US</h2>
+	 </div>
+   </div>  
+   <div class="about_h_1 clearfix">
+     <div class="col-sm-6">
+	  <div class="about_h_1l clearfix">
+	    <div class="grid clearfix">
+		  <figure class="effect-jazz">
+			<a href="#"><img src="{% static 'images/cow.jpg' %}" class="iw" alt="img25"></a>
+		  </figure>
+	  </div>
+	  </div>
+	 </div>
+	 <div class="col-sm-6">
+	  <div class="about_h_1r clearfix">
+	   <ul class="nav_1 mgt">
+			  <li class="active"><a data-toggle="tab" href="#home">OUR MISSION </a></li>
+			  <li class=""><a data-toggle="tab" href="#menu1">QUALITY CONTROL </a></li>
+			  <li><a data-toggle="tab" href="#menu2">OUR GOALS </a></li>
+       </ul>
+		 <div class="tab-content clearfix">
+				  <div id="home" class="tab-pane fade clearfix active in">
+					 <div class="click clearfix">
+					     	   <h4 class="mgt">INTEGRATING INNOVATIONS <br> INTO DAIRY TRADITIONS</h4>
+	   <p>Our mission is to create a sustainable, environmentally and technologically advanced dairy farm. We adhere to traditions of raising cows naturally combined with innovations.Our mission is to create a sustainable, environmentally and technologically advanced dairy farm. We adhere to traditions of raising cows naturally combined with innovations.
+	   </p>
+	   <h5><a class="button_1" href="{% url 'aboutpage' %}">READ MORE</a></h5>
+				    </div>
+				  </div>
+				  
+				  <div id="menu1" class="tab-pane fade clearfix">
+					 <div class="click clearfix">
+					   	   <h4 class="mgt">ENSURING THE HIGHEST<br> QUALITY OF OUR PRODUCTS</h4>
+	   <p>Our mission is to create a sustainable, environmentally and technologically advanced dairy farm. We adhere to traditions of raising cows naturally combined with innovations.Our mission is to create a sustainable, environmentally and technologically advanced dairy farm. We adhere to traditions of raising cows naturally combined with innovations.
+	   </p>
+	   <h5><a class="button_1" href="{% url 'aboutpage' %}">READ MORE</a></h5>
+				   </div>
+				  </div>
+				  <div id="menu2" class="tab-pane fade clearfix">
+					 <div class="click clearfix">
+					  	   <h4 class="mgt">OUR POSITION IS PRINCIPLED TO <br> FEED YOU WITH TASTY PRODUCE</h4>
+	   <p>Our mission is to create a sustainable, environmentally and technologically advanced dairy farm. We adhere to traditions of raising cows naturally combined with innovations.Our mission is to create a sustainable, environmentally and technologically advanced dairy farm. We adhere to traditions of raising cows naturally combined with innovations.
+	   </p>
+	   <h5><a class="button_1" href="{% url 'aboutpage' %}">READ MORE</a></h5>
+				   </div>
+				  </div>
+				</div>
+	  </div>
+	 </div>
+   </div> 
+  </div>
+ </div>
+</section>
+
+<section id="team_h">
+ <div class="container">
+  <div class="row">
+   <div class="farm_1 text-center clearfix">
+     <div class="col-sm-12">
+	  <h2 class="mgt textanimation2">OUR TEAM</h2>
+	 </div>
+   </div>  
+   <div class="team_h1 clearfix" style="height:350px;overflow:scroll;">
+	   {% for i in emp %}
+     <div class="col-sm-4"  style="margin-top:40px;">
+	  <div class="team_h1i text-center clearfix">
+	   <img src="{{ i.Image.url }}" style="width:200px;height:200px;" class="img-circle" alt="img25">
+	   <h4><a href="#">{{i.Empname}}</a></h4>
+
+	  </div>
+	 </div>
+	   {% endfor %}
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="sale_o">
+ <div class="sale_m clearfix">
+  <div class="container">
+  <div class="row">
+   <div class="sale_1 text-center clearfix">
+    <div class="col-sm-12">
+	 <h3 class="col_5">Featured Dairy Recipes </h3>
+	 <h1 class="col">FROM OUR FARMERS</h1>
+	 <p class="col_4">Purchase the best organic dairy products for your family at our <br> online shop and save more money than anywhere else.</p>
+
+	</div>
+   </div>
+  </div>
+ </div>
+ </div>
+</section>
+
+<section id="client">
+ <div class="container">
+  <div class="row">
+   <div class="farm_1 text-center clearfix">
+     <div class="col-sm-12">
+	  <h1 class="mgt">OUR CLIENTS</h1>
+	 </div>
+   </div>  
+    <div class="testim_1 clearfix">
+    <div id="carousel-example1" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                        <div class="col-sm-4">
+						  <div class="testim1 clearfix">
+						   <h4 class="mgt">Best Dairy</h4>
+						   <p>You have the best milk in the whole state! I’ve never tasted something this tasty and I think of becoming your regular client.</p>
+						   <div class="testim_1i2i clearfix">
+		                </div>
+						  </div>
+                        </div>
+						<div class="col-sm-4">
+						  <div class="testim1 clearfix">
+						   <h4 class="mgt">Nice Farm</h4>
+						   <p>Milk Farm is awesome in many ways. It has the best farmers and a wide range of great dairy products that I regularly buy.</p>
+						   <div class="testim_1i2i clearfix">
+		                </div>
+						  </div>
+                        </div>
+						<div class="col-sm-4">
+						  <div class="testim1 clearfix">
+						   <h4 class="mgt">Best Product</h4>
+						   <p>You have the best milk in the whole state! I’ve never tasted something this tasty and I think of becoming your regular client.</p>
+						   <div class="testim_1i2i clearfix">
+		                </div>
+						  </div>
+                        </div>
+                </div>
+                <div class="item">
+                        <div class="col-sm-4">
+						  <div class="testim1 clearfix">
+						   <h4 class="mgt">Best Dairy</h4>
+						   <p>You have the best milk in the whole state! I’ve never tasted something this tasty and I think of becoming your regular client.</p>
+						   <div class="testim_1i2i clearfix">
+
+		                </div>
+						  </div>
+                        </div>
+						<div class="col-sm-4">
+						  <div class="testim1 clearfix">
+						   <h4 class="mgt">Nice Farm</h4>
+						   <p>Milk Farm is awesome in many ways. It has the best farmers and a wide range of great dairy products that I regularly buy.</p>
+						   <div class="testim_1i2i clearfix">
+
+		                </div>
+						  </div>
+                        </div>
+						<div class="col-sm-4">
+						  <div class="testim1 clearfix">
+						   <h4 class="mgt">Best Product</h4>
+						   <p>You have the best milk in the whole state! I’ve never tasted something this tasty and I think of becoming your regular client.</p>
+						   <div class="testim_1i2i clearfix">
+
+		                </div>
+						  </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+	<div class="popular_3 text-center clearfix">
+            <div class="col-sm-12">
+                <!-- Controls -->
+                <div class="controls">
+                    <a class="left fa fa-chevron-left btn btn-success" href="#carousel-example1" data-slide="prev"></a><a class="right fa fa-chevron-right btn btn-success" href="#carousel-example1" data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="news_h">
+ <div class="container">
+  <div class="row">
+   <div class="farm_1 text-center clearfix">
+     <div class="col-sm-12">
+	  <h1 class="mgt">LATEST NEWS</h1>
+	 </div>
+   </div>  
+   <div class="news_h1 clearfix">
+    <div class="col-sm-6">
+	 <div class="news_h1l clearfix">
+	  <div class="news_h1l1 clearfix">
+	    <div class="news_h1l2 clearfix">
+	   <h6 class="col_4"></h6>
+	   <h4><a class="col" href="#">How Milk is Produced Nowadays: Interview with Our Founder</a></h4>
+	  </div>
+	  </div>
+	 </div>
+	</div>
+	<div class="col-sm-6">
+	 <div class="news_h1r mgt clearfix">
+	  <div class="col-sm-6 space_left">
+	   <div class="news_h1rl clearfix">
+	     <div class="grid clearfix">
+		  <figure class="effect-jazz">
+			<a href="#"><img src="{% static 'images/milk-society.jpg' %}" class="iw" alt="img25"></a>
+		  </figure>
+	  </div>
+	   </div>
+	  </div>
+	  <div class="col-sm-6 space_right">
+	   <div class="news_h1rr clearfix">
+	    <h6></h6>
+		<h4 class="line_1"><a href="#">Can Innovations Improve Dairy Production?</a></h4>
+	   </div>
+	  </div>
+	 </div>
+	 <div class="news_h1r clearfix">
+	  <div class="col-sm-6 space_left">
+	   <div class="news_h1rl clearfix">
+	     <div class="grid clearfix">
+		  <figure class="effect-jazz">
+			<a href="#"><img src="{% static 'images/natcow.jpg' %}" class="iw" alt="img25"></a>
+		  </figure>
+	  </div>
+	   </div>
+	  </div>
+	  <div class="col-sm-6 space_right">
+	   <div class="news_h1rr clearfix">
+	    <h6></h6>
+		<h4 class="line_1"><a href="#">Why You Should Avoid Pesticides in Your Milk</a></h4>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!--<section id="enquiry">-->
+<!-- <div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="enquiry_1 text-center clearfix">-->
+<!--	 <div class="col-sm-12">-->
+<!--	  <h4 class="mgt">NEWSLETTER</h4>-->
+<!--	  <p>Subscribe to our newsletter and get <span class="col_1">20%</span> off your first purchase</p>-->
+<!--	  <div class="input-group">-->
+<!--		<input type="text" class="form-control form_2" placeholder="Your Email">-->
+<!--		<span class="input-group-btn">-->
+<!--			<button class="btn btn-primary" type="button">-->
+<!--				SUBSCRIBE</button>-->
+<!--		</span>-->
+<!--      </div>-->
+<!--	 </div>-->
+<!--	</div>-->
+<!--  </div>-->
+<!-- </div>-->
+<!--</section>-->
+
+<section id="footer"
+
+>
+ <div class="container">
+  <div class="row">
+    <div class="footer_1 clearfix">
+	 <div class="col-sm-4">
+	  <div class="footer_1l clearix">
+	    <h4>GALLERY</h4>
+		<div class="row" style="margin-top:10px;margin-left:0px;margin-bottom:150px;height:200px;overflow:scroll;">
+                        {% for i in gal %}
+                        <div id="imgdiv" class="col-lg-6 col-md-6 col-sm-6" style="margin-left:-30px;">
+
+
+
+                                       <img src="{{i.Image.url}}" style="width:150px;height:120px;padding-left:10px;padding-top:10px;">
+
+
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+	  </div>
+	 </div>
+	 <div class="col-sm-4" >
+	  <div class="footer_1m clearix" style="margin-left:50px;">
+	    <h4>QUICK LINKS</h4>
+        <div class="footer_1mi clearfix">
+		 <div class="col-sm-6 space_left col-xs-6">
+		  <div class="footer_1mil clearfix">
+		   <h6><i class="fa fa-caret-right col_1"></i> <a href="{% url 'homepage' %}">Home</a></h6>
+
+		   <h6><i class="fa fa-caret-right col_1"></i> <a href="{% url 'allproducts' %}">All Products</a></h6>
+
+		   <h6><i class="fa fa-caret-right col_1"></i> <a href="{% url 'aboutpage' %}">About Us</a></h6>
+		   <h6><i class="fa fa-caret-right col_1"></i> <a href="{% url 'viewgal' %}"></a>Gallery</h6>
+		   <h6><i class="fa fa-caret-right col_1"></i> <a href="{% url 'contactpage' %}">Contact Us</a></h6>
+		  </div>
+		 </div>
+<!--		 <div class="col-sm-6 space_right col-xs-6">-->
+<!--		  <div class="footer_1mil clearfix">-->
+<!--			  {% for i in pro %}-->
+<!--		   <h6><i class="fa fa-caret-right col_1"></i> <a href="#">{{i.Product}}</a></h6>-->
+<!--		{% endfor %}-->
+<!--		  </div>-->
+<!--		 </div>-->
+		</div>
+	  </div>
+	 </div>
+
+	 <div class="col-sm-4" style="margin-top:50px;">
+	  <div class="footer_1r clearix">
+	    <h4>GET IN TOUCH</h4>
+        <p class="font_16"><i class="fa fa-map col_1"></i> Address : Co-operative Milk Supply Society Vellikulangara, Orkkattery(po), 673501(pin)</p>
+		<p class="font_16"><i class="fa fa-phone col_1"></i> <a href="#">0496 2512525</a></p>
+		<p class="font_16"><i class="fa fa-phone col_1"></i> <a href="#">malabarmilk@gmail.com</a></p>
+		<ul class="social-network social-circle">
+		<li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+		<li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+		<li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+		<li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+		<li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+       </ul>
+	  </div>
+	 </div>
+	</div>
+	  {% endblock %}
+	<div class="footer_2 text-center clearfix" style="margin-top:50px;margin-bottom:10px;">
+	 <div class="col-sm-12">
+		 <p class="mgt">© 2023 Co-operative Milk Supply Society Vellikulangara. | Malabar Milk</p>
+	 </div>
+	</div>
+  </div>
+ </div>
+</section>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="input-group clearfix">
+					<input type="text" class="form-control" placeholder="Search...">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-search"></i></button>
+					</span>
+				 </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".linav").mouseenter(function(){
+                $(this).css("background-color","blue")
+            })
+
+            $(".linav").mouseleave(function(){
+                $(this).css("background-color","#fff")
+            })
+            $(".div1").mouseenter(function(){
+                $(this).css("background-color","orange")
+            })
+            $(".div1").mouseleave(function(){
+                $(this).css("background-color","#fff")
+            })
+        })
+    </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+<script>
+$(document).ready(function(){
+	/*****Fixed Menu******/
+	var secondaryNav = $('.cd-secondary-nav'),
+	   secondaryNavTopPosition = secondaryNav.offset().top;
+	   navbar_height = document.querySelector('.navbar').offsetHeight;
+	   
+		$(window).on('scroll', function(){
+		    if($(window).scrollTop() > secondaryNavTopPosition + navbar_height ) {
+				secondaryNav.addClass('is-fixed');	
+				document.body.style.paddingTop = navbar_height + 'px';
+				
+			} else {
+				secondaryNav.removeClass('is-fixed');
+				document.body.style.paddingTop = '0'
+			}
+		});	
+		
+});
+</script>
+
+</body>
+<style>
+@keyframes slideinleft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform : translateX(0);
+    }
+}
+.slideleft{
+    transform : translateX(-100%);
+    animation : slideinleft 1s ease-in-out forwards;
+}
+.fadein {
+	opacity: 0;
+	animation : fadeIn 1s ease-in-out forwards;
+
+}
+@keyframes fadeIn {
+	0% {
+		opacity:0;
+		}
+	100% {
+		opacity:1;
+		}
+}
+@keyframes imageanim {
+	0% {
+		transform :scale(1);
+		opacity : 1;
+	}
+	50% {
+		transform: scale(1.2);
+		opacity: 1;
+	}
+	100% {
+		transform :scale(1);
+		opacity : 1;
+	}
+}
+.imganim {
+	animation : imageanim 3s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100%{
+    transform:scale(1);
+       }
+    50% {
+    transform:scale(1.2);
+    }
+}
+.pulse{
+    animation: pulse 1s ease-in-out infinite
+}
+@keyframes rotate{
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+
+}
+.rotate{
+    animation:rotate 15s linear infinite;
+}
+@keyframes anim {
+	0% { color : yellow; }
+	50% { color : white; }
+	100% { color : orange; }
+}
+@keyframes anim2 {
+	0% { color : blue; }
+	50% { color : red; }
+	100% { color : green; }
+}
+@keyframes anim3 {
+	0% { color : yellow; }
+	50% { color : red; }
+	100% { color : white; }
+}
+@keyframes anim4 {
+	0% { color : purple; }
+	50% { color : red; }
+	100% { color : #000066; }
+}
+.lianim {
+	animation: anim4 3s infinite;
+
+}
+.textanimation {
+	animation: anim2 2s infinite;
+
+}
+.textanimation2 {
+	animation: anim2 4s infinite;
+	transition:
+}
+.textanim3 {
+	animation: anim3 2s infinite;
+
+}
+li {
+	color:white;
+}
+
+a:hover {
+	color:green;
+}
+@keyframes slideinleft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform : translateX(0);
+    }
+}
+.slideleft{
+    transform : translateX(-100%);
+    animation : slideinleft 2s ease-in-out forwards;
+}
+
+
+.fade-carousel .slides .slide-1 {
+ background-image: url({% static 'images/cow.jpg' %});
+}
+.fade-carousel .slides .slide-2 {
+  background-image: url({% static 'images/dp.jpg' %});
+  background-size:cover;
+}
+.fade-carousel .slides .slide-3 {
+  background-image: url({% static 'images/ccc.jpg' %});
+  background-size:cover;
+
+}
+.qual_m{
+ background-image: url({% static 'images/milkinglass.jpg' %});
+ background-position:center;
+ }
+ #sale{
+ background-image: url({% static 'images/dairyproducts.jpg' %});
+ background-position:center;
+ }
+
+.sale_m{
+background:#0000008c;
+padding-top:120px;
+padding-bottom:120px;
+ }
+#sale_o{
+ background-image: url({% static 'images/dairyproducts.jpg' %});
+ background-position:center;
+ }
+ .news_h1l1{
+ background-image: url({% static 'images/dairyproducts.jpg' %});
+ background-position:center;
+ }
+.news_h1l2{
+background:#0000008c;
+padding:290px 30px 30px 30px;
+ }
+.news_h1r{
+margin-top:30px;
+ }
+
+
+</style>
+
+</html>

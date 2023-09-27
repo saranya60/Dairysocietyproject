@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+{% extends 'adminhome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           View Attendance</h1></div><br><br>
+    <div class="row" style="margin-bottom:30px;margin-top:50px;margin-left:100px;">
+				<div id="div1" class="col-xl-3 mb-30" style="margin-left:-25px;">
+					<h5 style="border:1px solid black;border-radius:10px;background-color:purple;
+					margin:auto;padding:20px;margin-left:60px;color:white;text-align:center;">View By Date</h5>
+				</div>
+				<div id="div2" class="col-xl-3 mb-30">
+					<div style="border:1px solid black;border-radius:10px;background-color:purple;margin:auto;padding:20px;paddin-right
+					:30px;margin-left:60px;"><h5 style="text-align:center;color:white;">View By Employee</h5></div>
+				</div>
+                <div id="div3" class="col-xl-3 mb-30">
+					<a href="{% url 'viewallatn' %}"><div style="border:1px solid black;height:85px;border-radius:10px;background-color:purple;margin:auto;padding:20px;paddin-right
+					:30px;margin-left:60px;"><h5 style="text-align:center;color:white;padding-top:10px;">View All</h5></div></a>
+				</div>
+
+    </div>
+    <div id="div4" style="display:none; margin-left:100px;margin-bottom:100px;">
+        <form method="post" action="{% url 'viewbydate' %}">
+    {% csrf_token %}
+            <h5 style="margin-left:100px;">Select Date Range : </h5><br>
+    <input type="date" name="dt1" class="form-field"><br>
+    <input type="date" name="dt2" class="form-field"><br>
+            <select name="ename" class="form-field">
+        <option>
+            Select Employee Name
+        </option>
+         {% for i in emp %}
+        <option>{{i.Empname}}</option>
+        {% endfor %}
+    </select>
+
+<button id="btn1" type="submit" class="inpbutton" style="margin-top:50px;  background-color: purple;height:50px;">view</button>
+        </form></div>
+
+<div id="div5" style="display:none;margin-left:100px;margin-bottom:100px;">
+
+        <form method="post" action="{% url 'viewbyemp' %}">
+    {% csrf_token %}
+
+    <select name="ename" class="form-field">
+        <option>
+            Select Employee Name
+        </option>
+         {% for i in emp %}
+        <option>{{i.Empname}}</option>
+        {% endfor %}
+    </select>
+
+<button type="submit" style="margin-top:50px;  background-color: purple;height:50px;" class="inpbutton">view</button>
+        </form></div>
+
+
+ <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <script>
+        $(document).ready(function(){
+           $("#div1").click(function(){
+                $("#div4").fadeToggle(2000)
+                $("#div2").hide()
+                $("#div3").hide()
+            })
+
+            $("#div2").click(function(){
+                $("#div5").fadeToggle(2000)
+                $("#div1").hide()
+                $("#div3").hide()
+            })
+
+
+            })
+
+    </script>
+</body>
+<style>
+.form-field{
+    width:500px;
+    margin-bottom:12px;
+    margin-top:12px;
+    height:50px;
+    border:2px solid black;
+    border-radius:10px;
+    margin-left:-150px;
+    background-color:white;
+    padding:10px;
+    font-size:16pt;
+    font-family: Arial;
+    font-weight:500;
+    margin-left:100px;
+
+
+}
+.inpbutton {
+  padding: 12px 10px;
+  width:300px;
+  height: 60px;
+  border: 0;
+  border-radius: 25px;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: "Rubik", sans-serif;
+  margin-left: 200px;
+
+}
+</<style>
+</style>
+</html>
+{% endblock %}

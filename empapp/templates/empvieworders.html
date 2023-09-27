@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% extends 'saleshome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="background-image:linear-gradient(white 50%,purple);height:100px;border:hidden;width:100%;">
+            <h1 style="color:rgb(28, 4, 92);font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;padding-top:10px;text-align:center;">
+           VIEW ORDERS</h1></div><br><br>
+
+
+
+<table width="100%" style="margin-left:10px;margin-top:30px;border:1px solid black;margin-bottom:100px;">
+    <tr style="border:1px solid black;">
+        <td><h5 style="color:brown;">Date</h5></td>
+
+        <td><h5 style="color:brown;">Name</h5></td>
+
+        <td><h5 style="color:brown;">Address</h5></td>
+        <td><h5 style="color:brown;">Pin</h5></td>
+        <td><h5 style="color:brown;">Email</h5></td>
+        <td><h5 style="color:brown;">Mobile</h5></td>
+        <td><h5 style="color:brown;">Total</h5></td>
+        <td><h5 style="color:brown;">Status</h5></td>
+
+
+    </tr>
+
+{% for i in data %}
+    <tr style="border:1px solid black;">
+        <td>{{i.Date}}</td>
+
+        <td>{{i.Name}}</td>
+        <td>{{i.Address}}</td>
+        <td>{{i.Pin}}</td>
+        <td>{{i.Email}}</td>
+        <td>{{i.Mobile}}</td>
+        <td>{{i.Subtotal}}</td>
+
+        <td>
+            <form method="post" action="{% url 'savestatus' dataid=i.id %}">
+            {% csrf_token %}
+                <input type="date" required name="date" style="margin-bottom:10px;">
+
+                <select name="status" style="font-weight:bold;">
+                    <option>{{i.Status}}</option>
+            <option value="Pending">Pending</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+                <input type="text" name="name" style="display:none;" value="{{i.Name}}">
+                <input type="text" name="total" value="{{i.Subtotal}}" style="display:none;">
+                <input type="text" name="address" value="{{i.Address}}" style="display:none;">
+                <input type="text" name="mobile" value="{{i.Mobile}}" style="display:none;">
+
+                <button type="submit" style="width:60px;background-color:green;">OK</button>
+            </form>
+        </td>
+<td></td>
+
+    </tr>
+{% endfor %}
+</table>
+
+<div style="margin-left:200px;width:330px;height:65px;padding:20px;">
+
+<a href="{% url 'saleshome' %}"> <button type="button" style="background-color:blue;margin-bottom:100px;color:white;width:100px;height:50px;margin-left:430px;">HOME</button></a>
+</div>
+</body>
+<style>
+td{
+    height:100px;
+
+    text-align:center;
+    font-size:12pt;
+    font-weight:bold;
+    color:black;
+
+}
+
+</style>
+</html>
+{% endblock %}

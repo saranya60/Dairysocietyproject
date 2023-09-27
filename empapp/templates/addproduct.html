@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'saleshome.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>ADD PRODUCT</h1>
+
+</div>
+<div class="divform">
+    <form method="post" action="{% url 'saveproduct' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Product Name : </label><br>
+        <input type="text" placeholder="Product Name" required name="product"><br>
+        <label>Description :</label><br>
+        <textarea class="txt1" placeholder="Description" required name="desc"></textarea><br>
+        <label>Price :</label><br>
+        <input type="text" placeholder="Price" required name="price"><br>
+        <label>Image</label><br>
+        <input type="file" name="image" required><br><br>
+        <button type="submit">ADD</button><br>
+    </form>
+</div>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+      {% for i in messages %}
+           {% if i.tags == 'warning' %}
+               <script>
+                    swal('{{i}}','','warning');
+               </script>
+           {% elif i.tags == 'error' %}
+               <script>
+                    swal('{{i}}','','error');
+               </script>
+           {% else %}
+               <script>
+                    swal('{{i}}','','success');
+               </script>
+           {% endif %}
+        {% endfor %}
+      {% endif %}
+
+</body>
+<style>
+.divform{
+    margin-top:50px;
+    margin-left:200px;
+}
+
+input{
+    width:550px;
+    height:50px;
+    padding:10px;
+    color:black;
+    border:2px solid black;
+    border-radius:10px;
+    font-size:14pt;
+
+}
+.txt1{
+    width:550px;
+    height:100px;
+    padding:10px;
+    color:black;
+    border:2px solid black;
+    border-radius:10px;
+    font-size:14pt;
+
+}
+label{
+    margin-top:15px;
+    color:black;
+    font-weight:500;
+    font-size:14pt;
+}
+h1{
+    margin-left:300px;
+    margin-top:50px;
+    font-size:36pt;
+    font-weight:bold;
+    color:#000066;
+}
+button{
+    width:200px;
+    height:50px;
+    border-radius:10px;
+    background-color:#000066;
+    color:white;
+    margin-left:170px;
+    margin-top:30px;
+}
+</style>
+</html>
+{% endblock %}
