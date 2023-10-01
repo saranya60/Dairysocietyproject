@@ -18,7 +18,7 @@ def homepage(request):
     #         totalprice = totalprice + i.Totalprice
     # else:
     #     messages.warning(request, "Log In First....!")
-    return render(request, "webhome.html", {'data':data, 'pro' :pro, 'emp':emp, 'gal':gal})
+    return render(request, "index.html", {'data':data, 'pro' :pro, 'emp':emp, 'gal':gal})
 
 def userlogin(request):
     if request.method == "POST":
